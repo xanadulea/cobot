@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Cobotised builds AI agents, automations and custom software for companies, with a human approval step wherever it matters.">
+<meta property="og:title" content="Cobotised: AI that works with you">
+<meta property="og:description" content="AI agents, automations and custom software for companies. Nothing is sent or published without you.">
+<meta property="og:url" content="https://cobotised.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2314202B'/%3E%3Cpath d='M9 16h14M16 9v14' stroke='%23C9821F' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<title>Cobotised · AI automation and custom software</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: one narrow reading column; the case-study timeline breaks out wider as the page's single visual moment. */
+:root {
+  --bg: #F5F6F8;
+  --surface: #FFFFFF;
+  --ink: #14202B;
+  --muted: #56616D;
+  --line: #DCE1E7;
+  --accent: #2652C4;
+  --accent-soft: #E6ECFA;
+  --gate: #C9821F;
+  --gate-soft: #FBF0DF;
+  --display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+  --body: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F151C; --surface: #17202A; --ink: #E8EDF2; --muted: #9AA6B2; --line: #2A3542;
+    --accent: #7FA2FF; --accent-soft: #1C2A47; --gate: #E7A84C; --gate-soft: #33281A; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F151C; --surface: #17202A; --ink: #E8EDF2; --muted: #9AA6B2; --line: #2A3542;
+  --accent: #7FA2FF; --accent-soft: #1C2A47; --gate: #E7A84C; --gate-soft: #33281A; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0; }
+.wrap { max-width: 720px; margin: 0 auto; }
+.wide { max-width: 1040px; margin: 0 auto; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.12; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.3rem, 6vw, 3.6rem); font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.6rem, 3.6vw, 2.2rem); font-weight: 700; letter-spacing: -0.01em; }
+h3 { font-size: 1.2rem; font-weight: 700; }
+p { margin: 0; }
+.eyebrow { font-family: var(--mono); font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+section { padding-block: 64px; display: flex; flex-direction: column; gap: 22px; }
+section + section { border-top: 1px solid var(--line); }
+.lead { font-size: 1.2rem; color: var(--muted); max-width: 60ch; }
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+/* hero */
+.hero { padding-block: 72px 56px; gap: 26px; }
+.hero h1 .gate { color: var(--gate); }
+.who { display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: .95rem; color: var(--muted); }
+.who span { display: inline-flex; gap: 8px; align-items: center; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.cta { align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: var(--bg);
+  font-weight: 600; padding: 14px 22px; border-radius: 999px; text-decoration: none; }
+
+/* timeline */
+.day { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 26px 24px 22px; display: flex; flex-direction: column; gap: 18px; }
+.day-head { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; align-items: baseline; }
+.day-head h3 { font-size: 1.05rem; }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: .82rem; color: var(--muted); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.track { position: relative; height: 150px; margin: 6px 4px 0; }
+.track .axis { position: absolute; left: 0; right: 0; top: 74px; height: 2px; background: var(--line); }
+.ticks { position: absolute; left: 0; right: 0; top: 84px; font-family: var(--mono); font-size: .72rem; color: var(--muted); }
+.ticks span { position: absolute; transform: translateX(-50%); }
+.ev { position: absolute; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 6px; width: 120px; text-align: center; }
+.ev.up { bottom: 82px; }
+.ev.down { top: 104px; }
+.ev b { display: block; width: 14px; height: 14px; border-radius: 4px; background: var(--accent); }
+.ev.gate b { background: var(--gate); transform: rotate(45deg); border-radius: 2px; }
+.ev em { font-style: normal; font-size: .8rem; line-height: 1.25; }
+.ev .t { font-family: var(--mono); font-size: .72rem; color: var(--muted); }
+.ev.up { flex-direction: column-reverse; }
+.list { display: none; list-style: none; margin: 0; padding: 0; }
+.list li { display: grid; grid-template-columns: 56px 16px 1fr; gap: 10px; align-items: baseline; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: .95rem; }
+.list li:last-child { border-bottom: 0; }
+.list .t { font-family: var(--mono); font-size: .8rem; color: var(--muted); }
+.list b { width: 11px; height: 11px; border-radius: 3px; background: var(--accent); display: inline-block; }
+.list .gate b { background: var(--gate); transform: rotate(45deg); }
+@media (max-width: 760px) { .track { display: none; } .list { display: block; } }
+
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+.fact { display: flex; flex-direction: column; gap: 4px; padding: 16px 0; border-top: 2px solid var(--ink); min-width: 0; }
+.fact strong { font-family: var(--display); font-size: 1.15rem; }
+.fact span { color: var(--muted); font-size: .95rem; }
+
+.broke { display: flex; flex-direction: column; gap: 14px; }
+.broke div { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 22px; padding: 14px 16px; background: var(--gate-soft); border-radius: 12px; }
+.broke div p:first-child { font-weight: 600; }
+.broke small { display: block; font-family: var(--mono); font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--gate); margin-bottom: 2px; }
+@media (max-width: 560px) { .broke div { grid-template-columns: 1fr; } }
+
+/* offers */
+.offers { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; }
+.offer { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.offer p { color: var(--muted); font-size: .95rem; }
+.offer .eg { font-size: .88rem; color: var(--ink); border-top: 1px dashed var(--line); padding-top: 10px; margin-top: auto; }
+
+.steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; counter-reset: s; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 40px 1fr; gap: 14px; align-items: start; }
+.steps li::before { content: counter(s); font-family: var(--display); font-weight: 800; font-size: 1.1rem; width: 34px; height: 34px; border-radius: 50%;
+  background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; }
+.steps p { color: var(--muted); }
+.steps strong { color: var(--ink); display: block; }
+
+.tools { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.tools li { font-family: var(--mono); font-size: .82rem; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
+
+.contact { background: var(--ink); color: var(--bg); border-radius: 18px; padding: 34px 28px; display: flex; flex-direction: column; gap: 14px; margin-block: 8px 64px; }
+.contact p { color: color-mix(in srgb, var(--bg) 78%, transparent); }
+.contact .mail { text-decoration: none; font-family: var(--mono); font-size: 1.05rem; color: var(--bg); background: color-mix(in srgb, var(--bg) 12%, transparent); padding: 10px 14px; border-radius: 10px; align-self: flex-start; user-select: all; overflow-wrap: anywhere; }
+@media (prefers-reduced-motion: no-preference) { .cta { transition: transform .15s; } .cta:hover { transform: translateY(-1px); } }
+</style>
+</head>
+<body>
+<main>
+  <div class="wrap">
+    <section class="hero">
+      <span class="eyebrow">Cobotised · AI that works with you · Ljubljana, Slovenia</span>
+      <h1>AI that does the busywork, and <span class="gate">asks you</span> before anything goes out.</h1>
+      <p class="lead">I'm Mia, founder of Cobotised. A cobot is a robot built to work alongside people, not replace them. I build AI agents, automations and custom software for companies: from social media and email outreach to inventory systems and internal tools. Every system has an approval step where it matters, so nothing is sent or published without you.</p>
+      <div class="who"><span><i class="dot"></i>Fixed-price projects</span><span><i class="dot"></i>Remote, clients across Europe and the US</span><span><i class="dot"></i>English</span></div>
+      <a class="cta" href="#contact">Tell me what eats your time →</a>
+    </section>
+  </div>
+
+  <div class="wide">
+    <section>
+      <div class="wrap" style="display:flex;flex-direction:column;gap:16px;margin:0">
+        <span class="eyebrow">Case study</span>
+        <h2>Paw Alert runs its own marketing</h2>
+        <p class="lead">Paw Alert is a free Android app for lost and found pets that I built and run. I automated its whole content and marketing operation, so my only daily job is approving what the system prepares.</p>
+      </div>
+
+      <div class="day" aria-label="A day of Paw Alert's automation">
+        <div class="day-head">
+          <h3>One day of the system (Ljubljana time)</h3>
+          <div class="legend"><span><i style="background:var(--accent)"></i>AI agent runs</span><span><i style="background:var(--gate)"></i>Waits for human approval</span></div>
+        </div>
+        <div class="track" aria-hidden="true">
+          <div class="axis"></div>
+          <div class="ticks"><span style="left:0%">00</span><span style="left:25%">06</span><span style="left:50%">12</span><span style="left:75%">18</span><span style="left:100%">24</span></div>
+          <div class="ev up" style="left:30.1%"><b></b><span class="t">07:13</span><em>News desk researches and writes reports</em></div>
+          <div class="ev down" style="left:41.1%"><b></b><span class="t">09:52</span><em>Outreach emails 10 animal shelters</em></div>
+          <div class="ev up gate" style="left:57.4%"><b></b><span class="t">13:47</span><em>Publishes what was approved</em></div>
+          <div class="ev down" style="left:74.1%"><b></b><span class="t">17:47</span><em>Writer drafts tomorrow's posts and 2 articles</em></div>
+          <div class="ev up gate" style="left:82%"><b></b><span class="t">evening</span><em>Owner approves on the review desk</em></div>
+          <div class="ev down gate" style="left:94.9%"><b></b><span class="t">22:47</span><em>Publishes and schedules</em></div>
+        </div>
+        <ul class="list">
+          <li><span class="t">07:13</span><b></b><span>News desk researches and writes reports</span></li>
+          <li><span class="t">09:52</span><b></b><span>Outreach emails 10 animal shelters</span></li>
+          <li class="gate"><span class="t">13:47</span><b></b><span>Publishes what was approved</span></li>
+          <li><span class="t">17:47</span><b></b><span>Writer drafts tomorrow's posts and 2 articles</span></li>
+          <li class="gate"><span class="t">evening</span><b></b><span>Owner approves on the review desk</span></li>
+          <li class="gate"><span class="t">22:47</span><b></b><span>Publishes and schedules</span></li>
+        </ul>
+      </div>
+
+      <div class="wrap" style="display:flex;flex-direction:column;gap:22px;margin:0;max-width:none">
+        <div class="facts">
+          <div class="fact"><strong>6 scheduled agents</strong><span>Writing, publishing, news, outreach, weekly competitor review, on-time posting</span></div>
+          <div class="fact"><strong>Every day</strong><span>A photo post and a video Reel, two SEO articles, and news reports with sources</span></div>
+          <div class="fact"><strong>Connected to</strong><span>Instagram, Facebook, Gmail, Google Calendar, GitHub and the website</span></div>
+          <div class="fact"><strong>Checked twice</strong><span>Separate brand and fact checks before anything reaches the review desk</span></div>
+        </div>
+
+        <h3>What broke, and how I fixed it</h3>
+        <div class="broke">
+          <div><p><small>Problem</small>A failed save made the posting job repeat the same post every hour.</p><p><small>Fix</small>Every action now has a saved "done" record and a duplicate check before it runs, plus a cleanup tool that removed the copies.</p></div>
+          <div><p><small>Problem</small>A scheduled job sometimes didn't start, so posts went out late.</p><p><small>Fix</small>A dispatcher starts each run, confirms it really started, and retries up to three times.</p></div>
+          <div><p><small>Problem</small>An email provider blocked sending one morning.</p><p><small>Fix</small>The agent saves drafts instead, puts a reminder in the calendar, and sends them on the next run.</p></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="wrap">
+    <section>
+      <span class="eyebrow">What I can build for you</span>
+      <h2>Automation or custom software, built around how you work</h2>
+      <div class="offers">
+        <div class="offer"><h3>Social media autopilot</h3><p>Posts written in your voice, with images, scheduled at the best times. You approve them in one place.</p><p class="eg">For: shops, salons, studios, clinics</p></div>
+        <div class="offer"><h3>Email outreach and follow-up</h3><p>Finds the right contacts, writes personal first emails, follows up once, and drafts replies for you to send.</p><p class="eg">For: agencies, B2B services, nonprofits</p></div>
+        <div class="offer"><h3>Research and reports</h3><p>A daily or weekly brief on your market, competitors or news, with sources, delivered to your inbox.</p><p class="eg">For: founders, consultants, small teams</p></div>
+        <div class="offer"><h3>Custom business software</h3><p>Tools made for your company: inventory and storage systems, order tracking, internal dashboards, with AI where it helps.</p><p class="eg">For: shops, warehouses, workshops, growing teams</p></div>
+      </div>
+    </section>
+
+    <section>
+      <span class="eyebrow">How we work</span>
+      <h2>Simple, and you stay in control</h2>
+      <ol class="steps">
+        <li><div><strong>You tell me the task</strong><p>By email, in a few sentences: what you do by hand today and how often.</p></div></li>
+        <li><div><strong>You get a fixed price</strong><p>A short plan with what the system will do, where it asks for your approval, and the cost.</p></div></li>
+        <li><div><strong>I build and test it</strong><p>On your accounts and data, with test runs you can watch before anything goes live.</p></div></li>
+        <li><div><strong>You approve, it runs</strong><p>You get a simple review page and a short guide. Small changes in the first month are included.</p></div></li>
+      </ol>
+    </section>
+
+    <section>
+      <span class="eyebrow">Tools I work with</span>
+      <ul class="tools">
+        <li>Claude &amp; OpenAI APIs</li><li>LiteLLM model router with failover</li><li>Python</li><li>Node.js</li><li>React</li><li>GitHub Actions</li><li>Gmail &amp; Google Calendar</li><li>Meta Graph API</li><li>Stripe</li><li>Printful</li><li>Firebase</li><li>Kotlin / Android</li>
+      </ul>
+    </section>
+
+    <div class="contact" id="contact">
+      <h2>Tell me what eats your time</h2>
+      <p>Write a few sentences about the task. I'll reply with whether it can be automated, how, and what it would cost.</p>
+      <a class="mail" href="mailto:mia@cobotised.com">mia@cobotised.com</a>
+    </div>
+  </div>
+</main>
+<footer style="text-align:center;padding-block:0 40px;color:var(--muted);font-size:.85rem">© 2026 Cobotised · Ljubljana, Slovenia</footer>
+</body>
+</html>
