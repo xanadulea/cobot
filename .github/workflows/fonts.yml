@@ -1,0 +1,37 @@
+# One-off helper: downloads the site's fonts from Google Fonts into /fonts so the site serves them itself
+# (no visitor IPs sent to Google — GDPR). Runs when this file changes or by hand.
+name: Self-host fonts
+on:
+  push:
+    paths: ['.github/workflows/fonts.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  fonts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download woff2 files (latin)
+        run: |
+          mkdir -p fonts
+          UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36'
+          get() { # family-url-part  outfile
+            css=$(curl -sS -A "$UA" "https://fonts.googleapis.com/css2?family=$1&display=swap")
+            url=$(printf '%s' "$css" | awk '/\/\* latin \*\//{f=1} f&&/src:/{match($0,/https:[^)]*\.woff2/); print substr($0,RSTART,RLENGTH); exit}')
+            echo "$2 <- $url"; curl -sS -o "fonts/$2" "$url"
+          }
+          get 'Bricolage+Grotesque:opsz,wght@12..96,700' bricolage-700.woff2
+          get 'Bricolage+Grotesque:opsz,wght@12..96,800' bricolage-800.woff2
+          get 'IBM+Plex+Sans:wght@400' plex-sans-400.woff2
+          get 'IBM+Plex+Sans:wght@600' plex-sans-600.woff2
+          get 'IBM+Plex+Mono:wght@500' plex-mono-500.woff2
+          ls -la fonts
+      - name: Commit
+        run: |
+          git add fonts
+          git diff --cached --quiet && exit 0
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Self-hosted fonts"
+          git push
